@@ -1,13 +1,13 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
-/* Brand color tokens — PRD §2 Brand Identity */
+/* Brand color tokens — deep navy, bronze, warm ivory */
 :root {
   --color-white: #ffffff;
-  --color-green: #1a5c38;
-  --color-gold: #c9a84c;
-  --color-dark: #0d1f17;
-  --color-cream: #f8f4ec;
+  --color-green: #1a2b3c;
+  --color-gold: #b8894a;
+  --color-dark: #141c18;
+  --color-cream: #f6f1e8;
 
   /* Semantic aliases */
   --background: var(--color-white);
@@ -17,10 +17,10 @@
 @theme inline {
   /* Colors */
   --color-white: #ffffff;
-  --color-green: #1a5c38;
-  --color-gold: #c9a84c;
-  --color-dark: #0d1f17;
-  --color-cream: #f8f4ec;
+  --color-green: #1a2b3c;
+  --color-gold: #b8894a;
+  --color-dark: #141c18;
+  --color-cream: #f6f1e8;
   --color-background: var(--color-white);
   --color-foreground: var(--color-dark);
 
@@ -64,13 +64,13 @@
   0%,
   100% {
     box-shadow:
-      0 10px 15px -3px rgb(13 31 23 / 0.2),
-      0 0 0 0 rgb(201 168 76 / 0.45);
+      0 10px 15px -3px rgb(20 28 24 / 0.2),
+      0 0 0 0 rgb(184 137 74 / 0.45);
   }
   50% {
     box-shadow:
-      0 10px 15px -3px rgb(13 31 23 / 0.2),
-      0 0 0 12px rgb(201 168 76 / 0);
+      0 10px 15px -3px rgb(20 28 24 / 0.2),
+      0 0 0 12px rgb(184 137 74 / 0);
   }
 }
 

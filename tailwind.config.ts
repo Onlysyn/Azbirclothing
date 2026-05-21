@@ -5,12 +5,12 @@ const config: Config = {
     extend: {
       colors: {
         white: "#FFFFFF",
-        green: "#1A5C38",
-        gold: "#C9A84C",
-        dark: "#0D1F17",
-        cream: "#F8F4EC",
+        green: "#1A2B3C",
+        gold: "#B8894A",
+        dark: "#141C18",
+        cream: "#F6F1E8",
         background: "#FFFFFF",
-        foreground: "#0D1F17",
+        foreground: "#141C18",
       },
       fontFamily: {
         display: ["var(--font-playfair-display)", "ui-serif", "Georgia", "serif"],
