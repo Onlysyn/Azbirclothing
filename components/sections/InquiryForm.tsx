@@ -39,14 +39,17 @@ export default function InquiryForm() {
 
     setStatus("submitting");
     const form = e.currentTarget;
-    const data = new FormData(form);
-    data.set("contactMethod", contactMethod);
+    const data = Object.fromEntries(new FormData(form));
+    data.contactMethod = contactMethod;
 
     try {
       const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
 
       if (!res.ok) {
@@ -61,9 +64,15 @@ export default function InquiryForm() {
       setContactMethod("");
     } catch (err) {
       setStatus("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Something went wrong.",
-      );
+      if (err instanceof TypeError) {
+        setErrorMessage(
+          "Unable to reach the server. Please check your connection and try again.",
+        );
+      } else {
+        setErrorMessage(
+          err instanceof Error ? err.message : "Something went wrong.",
+        );
+      }
     }
   }
 
