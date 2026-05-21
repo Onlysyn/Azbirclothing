@@ -69,6 +69,7 @@ export const COLLECTIONS: Record<CollectionSlug, Collection> = {
       "Rich solids and traditional patterns",
     ],
     occasions: [
+      "Weddings (especially grooms)",
       "Weddings & royal celebrations",
       "Naming ceremonies & investitures",
       "High-profile formal events",
@@ -100,6 +101,7 @@ export const COLLECTIONS: Record<CollectionSlug, Collection> = {
       "Refined neutrals & traditional whites",
     ],
     occasions: [
+      "Jumu'ah",
       "Ramadan & Eid gatherings",
       "Formal dinners & diplomatic events",
       "Clients seeking Gulf-authentic dress",
