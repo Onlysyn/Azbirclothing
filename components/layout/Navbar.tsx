@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -25,6 +25,7 @@ export default function Navbar({ overHero }: NavbarProps) {
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const isSolid = !isOverHero || scrolled;
 
@@ -53,7 +54,23 @@ export default function Navbar({ overHero }: NavbarProps) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      const drawer = document.getElementById("mobile-nav-drawer");
+      if (drawer?.contains(document.activeElement)) {
+        menuButtonRef.current?.focus();
+      }
+    }
+  }, [menuOpen]);
+
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    menuButtonRef.current?.focus();
+  }, []);
 
   const linkClass = isSolid
     ? "text-dark/80 hover:text-green transition-colors"
@@ -100,6 +117,7 @@ export default function Navbar({ overHero }: NavbarProps) {
             </Link>
 
             <button
+              ref={menuButtonRef}
               type="button"
               className={`inline-flex h-10 w-10 items-center justify-center rounded-sm lg:hidden ${
                 isSolid ? "text-dark" : "text-white"
@@ -160,8 +178,7 @@ export default function Navbar({ overHero }: NavbarProps) {
         className={`fixed top-0 right-0 z-50 flex h-full w-[min(100%,20rem)] flex-col bg-white shadow-xl transition-transform duration-300 ease-out lg:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        aria-hidden={!menuOpen}
-        inert={!menuOpen ? true : undefined}
+        inert={!menuOpen}
       >
         <div className="flex h-16 items-center justify-between border-b border-dark/10 px-5 sm:h-20">
           <span className="font-display text-lg font-semibold text-dark">

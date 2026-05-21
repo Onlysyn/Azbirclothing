@@ -1,32 +1,6 @@
-import CollectionCard from "@/components/ui/CollectionCard";
 import HeroSection from "@/components/sections/HeroSection";
-
-const COLLECTIONS = [
-  {
-    title: "Kaftan",
-    description:
-      "Elegant, made-to-measure kaftans tailored for ceremony, prayer, and everyday distinction.",
-    href: "/collections/kaftan",
-    imageSrc: "/images/kaftan.jpg",
-    imageAlt: "Azbir Clothing Kaftan collection",
-  },
-  {
-    title: "Agbada",
-    description:
-      "Grand, flowing agbadas crafted with premium fabrics for celebrations and formal occasions.",
-    href: "/collections/agbada",
-    imageSrc: "/images/agbada.jpg",
-    imageAlt: "Azbir Clothing Agbada collection",
-  },
-  {
-    title: "Emirati Jallabiya",
-    description:
-      "The first authentic Emirati Jallabiya in Northern Nigeria — a signature Azbir offering.",
-    href: "/collections/jallabiya",
-    imageSrc: "/images/jallabiya.jpg",
-    imageAlt: "Azbir Clothing Emirati Jallabiya collection",
-  },
-] as const;
+import CollectionCard from "@/components/ui/CollectionCard";
+import { COLLECTION_LIST } from "@/lib/collections";
 
 const WHY_AZBIR = [
   {
@@ -89,8 +63,15 @@ export default function Home() {
             </p>
           </div>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {COLLECTIONS.map((collection) => (
-              <CollectionCard key={collection.href} {...collection} />
+            {COLLECTION_LIST.map((collection) => (
+              <CollectionCard
+                key={collection.slug}
+                title={collection.title}
+                description={collection.description}
+                href={`/collections/${collection.slug}`}
+                imageSrc={collection.cardImage}
+                imageAlt={`Azbir Clothing ${collection.title} collection`}
+              />
             ))}
           </div>
         </div>
