@@ -5,6 +5,8 @@ export type Collection = {
   title: string;
   description: string;
   longDescription: string;
+  fabrics: string[];
+  occasions: string[];
   cardImage: string;
   images: { src: string; alt: string }[];
 };
@@ -28,6 +30,16 @@ export const COLLECTIONS: Record<CollectionSlug, Collection> = {
       "Elegant, made-to-measure kaftans tailored for ceremony, prayer, and everyday distinction.",
     longDescription:
       "Our kaftans are cut to your measurements using premium fabrics, with finishing details chosen for comfort, drape, and occasion. From understated daily wear to ceremonial pieces, each kaftan is tailored entirely at Azbir.",
+    fabrics: [
+      "Premium cotton & linen blends",
+      "Brocade and embroidered cotton",
+      "Seasonal lightweight & ceremonial weaves",
+    ],
+    occasions: [
+      "Daily wear & Jumu'ah",
+      "Weddings & naming ceremonies",
+      "Eid and formal gatherings",
+    ],
     cardImage: "/images/kaftan1.jpg",
     images: collectionImages(
       "kaftan",
@@ -51,6 +63,16 @@ export const COLLECTIONS: Record<CollectionSlug, Collection> = {
       "Grand, flowing agbadas crafted with premium fabrics for celebrations and formal occasions.",
     longDescription:
       "The agbada remains the definitive statement of Northern Nigerian formal dress. Azbir agbadas feature generous cuts, refined embroidery options, and fabrics selected for presence and movement.",
+    fabrics: [
+      "Damask, silk, and premium cotton",
+      "Hand-finished embroidery options",
+      "Rich solids and traditional patterns",
+    ],
+    occasions: [
+      "Weddings & royal celebrations",
+      "Naming ceremonies & investitures",
+      "High-profile formal events",
+    ],
     cardImage: "/images/agbada1.jpg",
     images: collectionImages(
       "agbada",
@@ -72,6 +94,16 @@ export const COLLECTIONS: Record<CollectionSlug, Collection> = {
       "The first authentic Emirati Jallabiya in Northern Nigeria — a signature Azbir offering.",
     longDescription:
       "Azbir introduced the authentic Emirati Jallabiya to Northern Nigeria — a refined silhouette rooted in Gulf tradition, tailored locally with Azbir precision. Ideal for clients seeking distinction beyond the conventional.",
+    fabrics: [
+      "Lightweight premium cotton",
+      "Gulf-inspired weave blends",
+      "Refined neutrals & traditional whites",
+    ],
+    occasions: [
+      "Ramadan & Eid gatherings",
+      "Formal dinners & diplomatic events",
+      "Clients seeking Gulf-authentic dress",
+    ],
     cardImage: "/images/jallabiya1.jpg",
     images: collectionImages(
       "jallabiya",

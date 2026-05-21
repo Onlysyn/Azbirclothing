@@ -69,12 +69,54 @@ export default async function CollectionPage({ params }: PageProps) {
 
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="mx-auto max-w-3xl text-center text-dark/75 leading-relaxed">
-            {collection.longDescription}
-          </p>
-          <div className="mt-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-dark/75 leading-relaxed">
+              {collection.longDescription}
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2">
+            <div className="rounded-sm border-2 border-gold/25 bg-cream p-6">
+              <h2 className="font-display text-lg font-semibold text-green">
+                Fabric Options
+              </h2>
+              <ul className="mt-4 space-y-2">
+                {collection.fabrics.map((fabric) => (
+                  <li
+                    key={fabric}
+                    className="flex items-start gap-2 text-sm text-dark/75"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    {fabric}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-sm border-2 border-gold/25 bg-cream p-6">
+              <h2 className="font-display text-lg font-semibold text-green">
+                Occasion Suitability
+              </h2>
+              <ul className="mt-4 space-y-2">
+                {collection.occasions.map((occasion) => (
+                  <li
+                    key={occasion}
+                    className="flex items-start gap-2 text-sm text-dark/75"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    {occasion}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-14">
+            <h2 className="mb-8 text-center font-display text-2xl font-semibold text-dark">
+              Gallery
+            </h2>
             <GalleryGrid images={collection.images} />
           </div>
+
           <div className="mt-14 flex justify-center">
             <Link
               href="/custom-order"
