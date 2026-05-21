@@ -124,6 +124,16 @@ export const COLLECTIONS: Record<CollectionSlug, Collection> = {
 
 export const COLLECTION_LIST = Object.values(COLLECTIONS);
 
+export async function fetchCollectionList(): Promise<Collection[]> {
+  return COLLECTION_LIST;
+}
+
+export async function fetchCollection(
+  slug: string,
+): Promise<Collection | undefined> {
+  return getCollection(slug);
+}
+
 export function getCollection(slug: string): Collection | undefined {
   return COLLECTIONS[slug as CollectionSlug];
 }

@@ -1,5 +1,12 @@
-import InquiryForm from "@/components/sections/InquiryForm";
+import CustomOrderFormSkeleton from "@/components/ui/skeletons/CustomOrderFormSkeleton";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+const InquiryForm = dynamic(
+  () => import("@/components/sections/InquiryForm"),
+  { loading: () => <CustomOrderFormSkeleton /> },
+);
 
 export const metadata: Metadata = {
   title: "Custom Order",
@@ -27,7 +34,9 @@ export default function CustomOrderPage() {
               All fields marked with <span className="text-gold">*</span> are
               required. Your inquiry is sent securely to our team.
             </p>
-            <InquiryForm />
+            <Suspense fallback={<CustomOrderFormSkeleton />}>
+              <InquiryForm />
+            </Suspense>
           </div>
         </div>
       </section>

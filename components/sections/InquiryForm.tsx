@@ -7,11 +7,15 @@ const inputClass =
 
 const labelClass = "mb-1.5 block text-sm font-medium text-dark";
 
+const CONTACT_METHODS = ["WhatsApp", "Call", "Email"] as const;
+type ContactMethod = (typeof CONTACT_METHODS)[number];
+
 export default function InquiryForm() {
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [contactMethod, setContactMethod] = useState<ContactMethod | "">("");
 
   const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim();
 
@@ -27,9 +31,16 @@ export default function InquiryForm() {
       return;
     }
 
+    if (!contactMethod) {
+      setStatus("error");
+      setErrorMessage("Please select a preferred contact method.");
+      return;
+    }
+
     setStatus("submitting");
     const form = e.currentTarget;
     const data = new FormData(form);
+    data.set("contactMethod", contactMethod);
 
     try {
       const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
@@ -47,6 +58,7 @@ export default function InquiryForm() {
 
       setStatus("success");
       form.reset();
+      setContactMethod("");
     } catch (err) {
       setStatus("error");
       setErrorMessage(
@@ -188,16 +200,21 @@ export default function InquiryForm() {
           Preferred Contact Method <span className="text-gold">*</span>
         </legend>
         <div className="mt-3 flex flex-wrap gap-4">
-          {(["WhatsApp", "Call", "Email"] as const).map((method) => (
+          {CONTACT_METHODS.map((method) => (
             <label
               key={method}
-              className="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-dark/15 bg-white px-4 py-2.5 text-sm text-dark transition-colors has-[:checked]:border-green has-[:checked]:bg-green/5"
+              className={`inline-flex cursor-pointer items-center gap-2 rounded-sm border bg-white px-4 py-2.5 text-sm text-dark transition-colors ${
+                contactMethod === method
+                  ? "border-green bg-green/5"
+                  : "border-dark/15"
+              }`}
             >
               <input
                 type="radio"
                 name="contactMethod"
                 value={method}
-                required
+                checked={contactMethod === method}
+                onChange={() => setContactMethod(method)}
                 className="accent-green"
               />
               {method}

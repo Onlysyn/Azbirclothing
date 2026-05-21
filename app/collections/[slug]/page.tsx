@@ -1,13 +1,15 @@
 import GalleryGrid from "@/components/sections/GalleryGrid";
+import CollectionDetailSkeleton from "@/components/ui/skeletons/CollectionDetailSkeleton";
 import {
   COLLECTION_LIST,
-  getCollection,
+  fetchCollection,
   isCollectionSlug,
 } from "@/lib/collections";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -21,7 +23,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const collection = getCollection(slug);
+  const collection = await fetchCollection(slug);
   if (!collection) return { title: "Collection Not Found" };
   return {
     title: `${collection.title} Collection`,
@@ -29,11 +31,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function CollectionPage({ params }: PageProps) {
-  const { slug } = await params;
+async function CollectionDetail({ slug }: { slug: string }) {
   if (!isCollectionSlug(slug)) notFound();
 
-  const collection = getCollection(slug)!;
+  const collection = (await fetchCollection(slug))!;
   const heroImage = collection.images[0];
 
   return (
@@ -70,7 +71,7 @@ export default async function CollectionPage({ params }: PageProps) {
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-dark/75 leading-relaxed">
+            <p className="leading-relaxed text-dark/75">
               {collection.longDescription}
             </p>
           </div>
@@ -128,5 +129,15 @@ export default async function CollectionPage({ params }: PageProps) {
         </div>
       </section>
     </>
+  );
+}
+
+export default async function CollectionPage({ params }: PageProps) {
+  const { slug } = await params;
+
+  return (
+    <Suspense fallback={<CollectionDetailSkeleton />}>
+      <CollectionDetail slug={slug} />
+    </Suspense>
   );
 }

@@ -1,5 +1,5 @@
 import CollectionCard from "@/components/ui/CollectionCard";
-import { COLLECTION_LIST } from "@/lib/collections";
+import { fetchCollectionList } from "@/lib/collections";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,9 @@ export const metadata: Metadata = {
     "Browse Azbir Clothing collections — Kaftans, Agbadas, and Emirati Jallabiya.",
 };
 
-export default function CollectionsPage() {
+export default async function CollectionsPage() {
+  const collections = await fetchCollectionList();
+
   return (
     <>
       <section className="bg-green px-4 py-14 text-center sm:px-6 sm:py-16 lg:px-8">
@@ -23,7 +25,7 @@ export default function CollectionsPage() {
       <section className="bg-cream py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {COLLECTION_LIST.map((collection) => (
+            {collections.map((collection) => (
               <CollectionCard
                 key={collection.slug}
                 title={collection.title}
