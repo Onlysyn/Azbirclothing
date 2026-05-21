@@ -59,3 +59,21 @@
     color: var(--color-dark);
   }
 }
+
+@keyframes whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 15px -3px rgb(13 31 23 / 0.2),
+      0 0 0 0 rgb(201 168 76 / 0.45);
+  }
+  50% {
+    box-shadow:
+      0 10px 15px -3px rgb(13 31 23 / 0.2),
+      0 0 0 12px rgb(201 168 76 / 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: whatsapp-pulse 2.5s ease-in-out infinite;
+}
