@@ -5,7 +5,7 @@ const config = {
       colors: {
         white: "#FFFFFF",
         green: "#000000",
-        gold: "#FFD700",
+        gold: "#D4AF37",
         dark: "#000000",
         cream: "#F6F1E8",
         whatsapp: "#25D366",
