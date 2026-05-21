@@ -1,13 +1,14 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
-/* Brand color tokens — deep navy, bronze, warm ivory */
+/* Brand color tokens — near-black, bronze, warm ivory */
 :root {
   --color-white: #ffffff;
-  --color-green: #1a2b3c;
+  --color-green: #111111;
   --color-gold: #b8894a;
   --color-dark: #141c18;
   --color-cream: #f6f1e8;
+  --color-whatsapp: #25d366;
 
   /* Semantic aliases */
   --background: var(--color-white);
@@ -17,10 +18,11 @@
 @theme inline {
   /* Colors */
   --color-white: #ffffff;
-  --color-green: #1a2b3c;
+  --color-green: #111111;
   --color-gold: #b8894a;
   --color-dark: #141c18;
   --color-cream: #f6f1e8;
+  --color-whatsapp: #25d366;
   --color-background: var(--color-white);
   --color-foreground: var(--color-dark);
 

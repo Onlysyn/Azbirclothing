@@ -5,10 +5,11 @@ const config: Config = {
     extend: {
       colors: {
         white: "#FFFFFF",
-        green: "#1A2B3C",
+        green: "#111111",
         gold: "#B8894A",
         dark: "#141C18",
         cream: "#F6F1E8",
+        whatsapp: "#25D366",
         background: "#FFFFFF",
         foreground: "#141C18",
       },
