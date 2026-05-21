@@ -1,4 +1,5 @@
 import BranchCard from "@/components/sections/BranchCard";
+import { HERO_IMAGE } from "@/lib/images";
 import { CONTACT } from "@/lib/site";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -33,7 +34,7 @@ export default function OurStoryPage() {
     <>
       <section className="relative flex min-h-[45vh] items-end bg-green sm:min-h-[50vh]">
         <Image
-          src="/images/hero.jpg"
+          src={HERO_IMAGE}
           alt=""
           fill
           priority

@@ -1,5 +1,6 @@
 "use client";
 
+import { HERO_IMAGE } from "@/lib/images";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,8 +44,8 @@ export default function HeroSection() {
   return (
     <section className="relative flex min-h-screen flex-col justify-end">
       <Image
-        src="/images/hero.jpg"
-        alt="Azbir Clothing bespoke traditional menswear"
+        src={HERO_IMAGE}
+        alt="Azbir Clothing boutique — bespoke traditional menswear"
         fill
         priority
         className="object-cover object-center"
